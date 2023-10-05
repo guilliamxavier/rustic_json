@@ -38,6 +38,8 @@ jobs:
         run: cargo doc
       - name: Add root index.html with redirect
         run: echo '<meta http-equiv="refresh" content="0; url=rustic_json/"/>' > ./target/doc/index.html
+      - name: Prevent permission error
+        run: rm -f ./target/doc/.lock
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
